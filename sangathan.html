@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sangathan | UKD Kedarnath</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="logo-u" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12 1l2.2 4.2L12 4.8 9.8 5.2 12 1z"/><path d="M5 6v11c0 4.2 3.5 6 7 6s7-1.8 7-6V6h-2v11c0 2.6-2 4-5 4s-5-1.4-5-4V6H5zm2 2h10v9c0 2.4-1.8 3.6-5 3.6S7 19.4 7 17V8z"/></symbol>
+  </svg>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#logo-u"/></svg></span>
+        <span>UKD Kedarnath</span>
+      </a>
+      <nav class="nav-desktop" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="sangathan.html" class="active">Sangathan</a>
+        <a href="contact.html">Contact</a>
+        <a href="donate.html" class="btn btn-gold">Donate</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="page-hero">
+      <h1>Sangathan</h1>
+      <p>संगठन चार्ट — State executive and district units across Uttarakhand.</p>
+    </section>
+
+    <section class="section sangathan-section sangathan-chart" id="sangathan-chart">
+      <div class="container">
+        <div class="section-title">
+          <h2>संगठन चार्ट</h2>
+          <p class="sangathan-chart-sub">Organisation chart — उत्तराखंड क्रांति दल युवा प्रकोष्ठ</p>
+        </div>
+
+        <div class="chart-block">
+          <h3 class="chart-block-title">प्रदेश कार्यकारिणी <span class="chart-block-en">(State Executive)</span></h3>
+          <div class="chart-state-grid" id="stateExecutiveGrid"><!-- Filled by JS --></div>
+        </div>
+
+        <div class="chart-block chart-block--districts">
+          <h3 class="chart-block-title">जिला संगठन <span class="chart-block-en">(District Units)</span></h3>
+          <div class="chart-district-grid">
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">कोटद्वार</span><span class="chart-district-en">Kotdwar</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">अभिजीत रावत</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Rishi Kumar</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला महामंत्री</span><span class="chart-name">Akash Blooni</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला संगठन मंत्री</span><span class="chart-name">Mohit Jakhamola</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">टिहरी गढ़वाल</span><span class="chart-district-en">Tehri Garhwal</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">Rahul Kotiyal</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">देहरादून</span><span class="chart-district-en">Dehradun</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">Jatin Singh Chauhan</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">नैनीताल</span><span class="chart-district-en">Nainital</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">हरीश मेवाड़ी</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला महामंत्री</span><span class="chart-name">Neeraj Bisht</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">उत्तरकाशी</span><span class="chart-district-en">Uttarkashi</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">Surjeet Singh Rana</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Mohit Matura</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला महामंत्री</span><span class="chart-name">Pradeep Panwar</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला संगठन मंत्री</span><span class="chart-name">Sumit Negi</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">अल्मोड़ा</span><span class="chart-district-en">Almora</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">रघुवर सिंह भाकुनी</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Gokul Singh Nagarkoti</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">हरिद्वार</span><span class="chart-district-en">Haridwar</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">कल्पेश्वर पांडेय</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Manu Pharswan</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">रानीखेत</span><span class="chart-district-en">Ranikhet</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">ललित सिंह अधिकारी</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Laxmi Rawat</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला संगठन मंत्री</span><span class="chart-name">Manoj Singh Negi</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">चमोली</span><span class="chart-district-en">Chamoli</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">विधानसभा अध्यक्ष (कर्णप्रयाग)</span><span class="chart-name">अमित सिंह रावत</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">पौड़ी गढ़वाल</span><span class="chart-district-en">Pauri Garhwal</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">विधानसभा अध्यक्ष (कोटद्वार)</span><span class="chart-name">आशीष ध्यानी</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">रुद्रप्रयाग</span><span class="chart-district-en">Rudraprayag</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">अजीत सिंह</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">चम्पावत</span><span class="chart-district-en">Champawat</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">Amit Binwal</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला उपाध्यक्ष</span><span class="chart-name">Saurav Deopa</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">पिथौरागढ़</span><span class="chart-district-en">Pithoragarh</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">गिरीश जोशी</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">बागेश्वर</span><span class="chart-district-en">Bageshwar</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">Bhaskar Singh Bora</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">उधम सिंह नगर / खटीमा</span><span class="chart-district-en">Udham Singh Nagar</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष (खटीमा)</span><span class="chart-name">भवानी शंकर</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष (उधम सिंह नगर)</span><span class="chart-name">Vicky Pandey</span></div>
+              </div>
+            </div>
+            <div class="chart-district-unit">
+              <button type="button" class="chart-district-trigger"><span class="chart-district-name">यमुनोत्री</span><span class="chart-district-en">Yamunotri</span><span class="chart-district-arrow" aria-hidden="true">→</span></button>
+              <div class="chart-district-roles" hidden>
+                <div class="chart-row"><span class="chart-role-sm">जिला अध्यक्ष</span><span class="chart-name">अरुण प्रसाद नौटियाल</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला संगठन मंत्री</span><span class="chart-name">Ashutosh Rana</span></div>
+                <div class="chart-row"><span class="chart-role-sm">जिला संगठन मंत्री</span><span class="chart-name">Narendra Dimri</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sangathan-chart-cta">
+          <p>Get in touch for coordination at state, district, or block level.</p>
+          <a href="contact.html" class="btn btn-primary">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- District Units popup -->
+  <div id="district-modal" class="district-modal" aria-hidden="true" role="dialog" aria-labelledby="district-modal-title" aria-modal="true">
+    <div class="district-modal-backdrop"></div>
+    <div class="district-modal-dialog">
+      <button type="button" class="district-modal-close" aria-label="Close">&times;</button>
+      <div class="district-modal-header">
+        <h3 id="district-modal-title" class="district-modal-title"></h3>
+        <p class="district-modal-subtitle"></p>
+      </div>
+      <div class="district-modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#logo-u"/></svg></span> UKD Kedarnath</div>
+        <p>Yuva Uttarakhand — Voice of youth, strength of mountains.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sangathan.html">Sangathan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 UKD Kedarnath • All rights reserved.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      // District Units popup: open on district trigger click, close on backdrop/close/Escape
+      var modal = document.getElementById('district-modal');
+      if (modal) {
+        var titleEl = modal.querySelector('.district-modal-title');
+        var subtitleEl = modal.querySelector('.district-modal-subtitle');
+        var bodyEl = modal.querySelector('.district-modal-body');
+        var backdrop = modal.querySelector('.district-modal-backdrop');
+        var closeBtn = modal.querySelector('.district-modal-close');
+
+        function openDistrictPopup(unit) {
+          var nameEl = unit.querySelector('.chart-district-name');
+          var enEl = unit.querySelector('.chart-district-en');
+          var rolesEl = unit.querySelector('.chart-district-roles');
+          if (!nameEl || !bodyEl) return;
+          titleEl.textContent = nameEl.textContent;
+          subtitleEl.textContent = enEl ? enEl.textContent : '';
+          bodyEl.innerHTML = rolesEl ? rolesEl.innerHTML : '';
+          modal.setAttribute('aria-hidden', 'false');
+          modal.classList.add('district-modal--open');
+          document.body.style.overflow = 'hidden';
+          closeBtn.focus();
+        }
+
+        function closeDistrictPopup() {
+          modal.setAttribute('aria-hidden', 'true');
+          modal.classList.remove('district-modal--open');
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.chart-district-unit').forEach(function(unit) {
+          var trigger = unit.querySelector('.chart-district-trigger');
+          if (!trigger) return;
+          trigger.addEventListener('click', function() {
+            openDistrictPopup(unit);
+          });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closeDistrictPopup);
+        if (backdrop) backdrop.addEventListener('click', closeDistrictPopup);
+        modal.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closeDistrictPopup();
+        });
+      }
+
+      var stateExecutive = [
+        { role: 'केंद्रीय अध्यक्ष', name: 'Ashish Negi', image: '' },
+        { role: 'केंद्रीय उपाध्यक्ष', name: 'कुलदीप रावत', image: '' },
+        { role: 'केंद्रीय महामंत्री', name: 'दीपक भाकुनी', image: '' },
+        { role: 'केंद्रीय महासचिव', name: 'Vikash Chandra Rayal', image: '' },
+        { role: 'केंद्रीय संगठन मंत्री', name: 'Gaurav Joshi', image: '' },
+        { role: 'केंद्रीय संगठन मंत्री', name: 'Narendra Singh Bisht', image: '' },
+        { role: 'केंद्रीय मीडिया प्रभारी', name: 'Ayush Rawat', image: '' },
+        { role: 'केंद्रीय सचिव', name: 'Navneet Uniyal', image: '' },
+        { role: 'केंद्रीय सचिव', name: 'Vaibhav Singh Kathait', image: '' },
+        { role: 'केंद्रीय आईटी प्रमुख', name: 'दिव्यांशु मधवाल', image: '' },
+        { role: 'प्रदेश संगठन मंत्री', name: 'Himanshu Panwar', image: '' }
+      ];
+      function getInitial(name) {
+        if (!name || !name.trim()) return '?';
+        var first = name.trim().charAt(0);
+        return first.toUpperCase ? first.toUpperCase() : first;
+      }
+      var grid = document.getElementById('stateExecutiveGrid');
+      if (!grid) return;
+      grid.innerHTML = stateExecutive.map(function(person) {
+        var image = (person.image || '').trim();
+        var initial = getInitial(person.name);
+        var avatarHtml = image
+          ? '<div class="chart-card-avatar"><img src="' + image + '" alt="" loading="lazy"></div>'
+          : '<div class="chart-card-avatar chart-card-avatar--initial"><span class="chart-card-initial" aria-hidden="true">' + initial + '</span></div>';
+        return '<div class="chart-card chart-card--state">' +
+          avatarHtml +
+          '<span class="chart-role">' + person.role + '</span>' +
+          '<span class="chart-name">' + person.name + '</span>' +
+          '</div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

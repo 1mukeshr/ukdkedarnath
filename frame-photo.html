@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frame Your Photo | UKD Kedarnath</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="logo-u" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12 1l2.2 4.2L12 4.8 9.8 5.2 12 1z"/><path d="M5 6v11c0 4.2 3.5 6 7 6s7-1.8 7-6V6h-2v11c0 2.6-2 4-5 4s-5-1.4-5-4V6H5zm2 2h10v9c0 2.4-1.8 3.6-5 3.6S7 19.4 7 17V8z"/></symbol>
+    <symbol id="phone" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+    <symbol id="frame" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2 2.51L14.5 12l4.5 6H5l3.5-4.5z"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></symbol>
+  </svg>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#logo-u"/></svg></span>
+        <span>UKD Kedarnath</span>
+      </a>
+      <nav class="nav-desktop" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="sangathan.html">Sangathan</a>
+        <a href="contact.html">Contact</a>
+        <a href="donate.html" class="btn btn-gold">Donate</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="form-page frame-photo-page" tabindex="-1">
+    <div class="container frame-generator-container">
+      <div class="frame-generator-layout">
+        <div class="frame-generator-form">
+          <div class="frame-card" id="frameFormCard">
+            <header class="frame-header">
+              <h1>Frame Your Photo</h1>
+              <p class="frame-header-desc">Show your support with Yuva Uttarakhand</p>
+            </header>
+
+            <!-- Step 1: Select Frame -->
+            <div class="frame-step">
+              <h2 class="frame-step-title"><span class="frame-step-num">1</span> Select Frame</h2>
+              <div class="frame-options" id="frameOptions">
+                <button type="button" class="frame-option selected" data-frame="classic" aria-pressed="true">
+                  <span class="frame-option-name">UKD Kedarnath</span>
+                  <span class="frame-option-desc">Name + tagline bar</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Upload Photo -->
+            <div class="frame-step">
+              <h2 class="frame-step-title"><span class="frame-step-num">2</span> Upload Photo</h2>
+              <div class="frame-upload-wrap">
+                <div class="frame-drop-zone frame-preview-wrap-inner" id="previewArea" role="button" tabindex="0" aria-label="Upload photo">
+                  <input type="file" id="photoInput" accept="image/png,image/jpeg,image/jpg,image/webp" class="frame-file-input" aria-hidden="true">
+                  <div id="placeholderArea" class="frame-placeholder">
+                    <span class="frame-placeholder-icon" aria-hidden="true">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    </span>
+                    <span class="frame-placeholder-main">Click to upload or drag and drop</span>
+                    <span class="frame-placeholder-hint">PNG, JPG up to 10MB</span>
+                  </div>
+                  <div id="cropperWrap" class="frame-cropper-wrap" style="display: none;">
+                    <img id="cropperImg" src="" alt="Crop area">
+                    <p class="frame-cropper-hint">Drag to move • Pinch to zoom</p>
+                  </div>
+                  <button type="button" class="frame-change-photo" id="changePhotoBtn" style="display: none;" aria-label="Change photo">Change Photo</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="frame-meta">
+              <label for="frameName" class="frame-meta-label">Name on frame</label>
+              <input type="text" id="frameName" class="frame-meta-input" placeholder="Your name" value="UKD Kedarnath">
+            </div>
+
+            <div class="frame-actions">
+              <button type="button" class="btn btn-primary btn-block frame-generate-btn" id="generateFrameBtn" disabled>
+                <span class="btn-text">Generate Frame</span>
+                <span class="btn-loading" aria-hidden="true" style="display: none;">Processing...</span>
+              </button>
+            </div>
+
+            <div id="previewAreaLabel" class="frame-preview-label" aria-live="polite">
+              Select a frame and upload your photo
+            </div>
+          </div>
+        </div>
+
+        <aside class="frame-result-preview" id="frameResultPreview" aria-live="polite">
+          <div class="frame-result-placeholder" id="frameResultPlaceholder">
+            <span class="frame-result-placeholder-icon" aria-hidden="true">🖼</span>
+            <p class="frame-result-placeholder-text">Preview will appear here</p>
+            <p class="frame-result-placeholder-hint">Upload a photo and click Generate Frame</p>
+          </div>
+          <div class="frame-result-content" id="frameResultContent" style="display: none;">
+            <h3 class="frame-result-title">Preview</h3>
+            <p class="frame-result-desc">Your framed photo. Download when ready.</p>
+            <div class="frame-result-image-wrap">
+              <img id="frameResultImg" src="" alt="Framed photo preview">
+            </div>
+            <button type="button" class="btn btn-primary btn-block" id="downloadFromPreviewBtn">Download photo</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2026 UKD Kedarnath • All rights reserved.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
+  <script>
+    (function() {
+      var MAX_SIZE_MB = 10;
+      var MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+      var OUTPUT_SIZE = 1080;
+
+      var photoInput = document.getElementById('photoInput');
+      var frameName = document.getElementById('frameName');
+      var previewArea = document.getElementById('previewArea');
+      var placeholderArea = document.getElementById('placeholderArea');
+      var cropperWrap = document.getElementById('cropperWrap');
+      var cropperImg = document.getElementById('cropperImg');
+      var changePhotoBtn = document.getElementById('changePhotoBtn');
+      var generateBtn = document.getElementById('generateFrameBtn');
+      var btnText = generateBtn ? generateBtn.querySelector('.btn-text') : null;
+      var btnLoading = generateBtn ? generateBtn.querySelector('.btn-loading') : null;
+      var previewAreaLabel = document.getElementById('previewAreaLabel');
+      var frameResultPreview = document.getElementById('frameResultPreview');
+      var frameResultPlaceholder = document.getElementById('frameResultPlaceholder');
+      var frameResultContent = document.getElementById('frameResultContent');
+      var frameResultImg = document.getElementById('frameResultImg');
+      var downloadFromPreviewBtn = document.getElementById('downloadFromPreviewBtn');
+
+      var cropper = null;
+      var currentImageData = null;
+      var lastGeneratedDataUrl = null;
+
+      function updatePreviewLabel(text) {
+        if (previewAreaLabel) previewAreaLabel.textContent = text;
+      }
+
+      function destroyCropper() {
+        if (cropper) {
+          cropper.destroy();
+          cropper = null;
+        }
+      }
+
+      function initCropper(src) {
+        destroyCropper();
+        cropperImg.src = src;
+        cropperWrap.style.display = 'block';
+        placeholderArea.style.display = 'none';
+        if (changePhotoBtn) changePhotoBtn.style.display = 'block';
+        previewArea.classList.add('frame-drop-zone--has-image');
+        previewArea.classList.remove('frame-drop-zone--empty');
+        updatePreviewLabel('Drag to move • Pinch to zoom');
+
+        setTimeout(function() {
+          cropper = new Cropper(cropperImg, {
+            aspectRatio: 1,
+            viewMode: 1,
+            dragMode: 'move',
+            autoCropArea: 1,
+            guides: false,
+            center: false,
+            highlight: false,
+            background: false,
+            cropBoxMovable: false,
+            cropBoxResizable: false,
+            toggleDragModeOnDblclick: false,
+            minContainerWidth: 200,
+            minContainerHeight: 200
+          });
+        }, 100);
+      }
+
+      function loadImageFile(file) {
+        if (!file || !file.type.match(/^image\/(png|jpe?g|webp)$/i)) {
+          alert('Please choose a PNG or JPG image.');
+          return;
+        }
+        if (file.size > MAX_SIZE_BYTES) {
+          alert('File must be under ' + MAX_SIZE_MB + 'MB.');
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          currentImageData = e.target.result;
+          initCropper(currentImageData);
+          if (generateBtn) generateBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function setProcessing(loading) {
+        if (!generateBtn) return;
+        generateBtn.disabled = loading;
+        generateBtn.classList.toggle('is-loading', loading);
+        if (btnText) btnText.style.display = loading ? 'none' : 'inline';
+        if (btnLoading) btnLoading.style.display = loading ? 'inline' : 'none';
+        updatePreviewLabel(loading ? 'Creating Magic...' : (currentImageData ? 'Drag to move • Pinch to zoom' : 'Select a frame and upload your photo'));
+      }
+
+      function drawFrame(sourceCanvas, name) {
+        var w = OUTPUT_SIZE;
+        var h = OUTPUT_SIZE;
+        var barHeight = 100;
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(sourceCanvas, 0, 0, w, h, 0, 0, w, h);
+        ctx.fillStyle = 'rgba(0,0,0,0.75)';
+        ctx.fillRect(0, h - barHeight, w, barHeight);
+        ctx.fillStyle = '#22c55e';
+        ctx.font = 'bold 32px Outfit, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(name, w / 2, h - barHeight + 42);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.font = '14px DM Sans, sans-serif';
+        ctx.fillText('Yuva Uttarakhand • Voice of Youth', w / 2, h - 18);
+        return canvas;
+      }
+
+      function getCroppedSourceCanvas(callback) {
+        if (cropper) {
+          var c = cropper.getCroppedCanvas({ width: OUTPUT_SIZE, height: OUTPUT_SIZE, imageSmoothingEnabled: true, imageSmoothingQuality: 'high' });
+          callback(c);
+          return;
+        }
+        var img = new Image();
+        img.onload = function() {
+          var size = Math.min(img.width, img.height);
+          var c = document.createElement('canvas');
+          c.width = size;
+          c.height = size;
+          var ctx = c.getContext('2d');
+          var sx = (img.width - size) / 2, sy = (img.height - size) / 2;
+          ctx.drawImage(img, sx, sy, size, size, 0, 0, size, size);
+          var out = document.createElement('canvas');
+          out.width = OUTPUT_SIZE;
+          out.height = OUTPUT_SIZE;
+          out.getContext('2d').drawImage(c, 0, 0, size, size, 0, 0, OUTPUT_SIZE, OUTPUT_SIZE);
+          callback(out);
+        };
+        img.src = currentImageData;
+      }
+
+      function showPreview(dataUrl) {
+        lastGeneratedDataUrl = dataUrl;
+        if (frameResultImg) frameResultImg.src = dataUrl;
+        if (frameResultPlaceholder) frameResultPlaceholder.style.display = 'none';
+        if (frameResultContent) frameResultContent.style.display = 'block';
+        if (frameResultPreview) frameResultPreview.classList.add('frame-result-preview--has-content');
+      }
+
+      function generateFrame() {
+        if (!currentImageData) return;
+        var name = (frameName.value || 'UKD Kedarnath').trim() || 'UKD Kedarnath';
+        setProcessing(true);
+
+        getCroppedSourceCanvas(function(sourceCanvas) {
+          var finalCanvas = drawFrame(sourceCanvas, name);
+          var dataUrl = finalCanvas.toDataURL('image/png');
+          showPreview(dataUrl);
+          setProcessing(false);
+        });
+      }
+
+      function downloadFromPreview() {
+        if (!lastGeneratedDataUrl) return;
+        var link = document.createElement('a');
+        link.download = 'ukd-kedarnath-framed-photo.png';
+        link.href = lastGeneratedDataUrl;
+        link.click();
+      }
+
+      photoInput.addEventListener('change', function(e) {
+        var file = e.target.files && e.target.files[0];
+        loadImageFile(file);
+      });
+
+      previewArea.addEventListener('click', function(e) {
+        if (e.target === changePhotoBtn || (changePhotoBtn && changePhotoBtn.contains(e.target))) return;
+        if (e.target === generateBtn || (generateBtn && generateBtn.contains(e.target))) return;
+        if (cropperWrap.style.display === 'none') photoInput.click();
+      });
+      previewArea.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); photoInput.click(); }
+      });
+      previewArea.addEventListener('dragenter', function(e) { e.preventDefault(); e.stopPropagation(); previewArea.classList.add('frame-drop-zone--dragover'); });
+      previewArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!previewArea.contains(e.relatedTarget)) previewArea.classList.remove('frame-drop-zone--dragover');
+      });
+      previewArea.addEventListener('dragover', function(e) { e.preventDefault(); e.stopPropagation(); });
+      previewArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        previewArea.classList.remove('frame-drop-zone--dragover');
+        var file = e.dataTransfer.files && e.dataTransfer.files[0];
+        loadImageFile(file);
+      });
+
+      if (changePhotoBtn) {
+        changePhotoBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          photoInput.click();
+        });
+      }
+
+      generateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        generateFrame();
+      });
+
+      if (downloadFromPreviewBtn) {
+        downloadFromPreviewBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          downloadFromPreview();
+        });
+      }
+
+      previewArea.classList.add('frame-drop-zone--empty');
+
+      var frameOptions = document.querySelectorAll('.frame-option');
+      frameOptions.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          frameOptions.forEach(function(b) { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
+          btn.classList.add('selected');
+          btn.setAttribute('aria-pressed', 'true');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
