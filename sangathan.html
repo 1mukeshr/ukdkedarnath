@@ -165,6 +165,21 @@
           </div>
         </div>
 
+        <div class="sangathan-youth-block" id="youth-members">
+          <h3 class="chart-block-title">युवा सदस्य व नेता <span class="chart-block-en">(Youth Members & Leaders)</span></h3>
+          <p class="sangathan-youth-desc">Members and leaders who have joined through the website. Join us to be listed here.</p>
+          <div class="sangathan-youth-tabs" role="tablist">
+            <button type="button" class="sangathan-youth-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+            <button type="button" class="sangathan-youth-tab" role="tab" aria-selected="false" data-filter="member">Members</button>
+            <button type="button" class="sangathan-youth-tab" role="tab" aria-selected="false" data-filter="leader">Leaders</button>
+          </div>
+          <div id="sangathan-members-list" class="sangathan-members-grid"><!-- Filled by JS --></div>
+          <div id="sangathan-members-empty" class="sangathan-members-empty" hidden>
+            <p>No members yet. Be the first to join!</p>
+            <a href="index.html#join-form" class="btn btn-primary">Join now</a>
+          </div>
+        </div>
+
         <div class="sangathan-chart-cta">
           <p>Get in touch for coordination at state, district, or block level.</p>
           <a href="contact.html" class="btn btn-primary">Contact us</a>
@@ -294,6 +309,74 @@
           '<span class="chart-name">' + person.name + '</span>' +
           '</div>';
       }).join('');
+    })();
+
+    // Youth Members & Leaders from join form (localStorage)
+    (function() {
+      var STORAGE_KEY = 'ukd_join_submissions';
+      var listEl = document.getElementById('sangathan-members-list');
+      var emptyEl = document.getElementById('sangathan-members-empty');
+      var tabs = document.querySelectorAll('.sangathan-youth-tab');
+      var currentFilter = 'all';
+
+      function getSubmissions() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          var list = JSON.parse(raw);
+          return Array.isArray(list) ? list : [];
+        } catch (err) { return []; }
+      }
+
+      function getInitial(name) {
+        if (!name || !name.trim()) return '?';
+        return (name.trim().charAt(0) + '').toUpperCase();
+      }
+
+      function renderList() {
+        var list = getSubmissions();
+        if (!listEl) return;
+        if (list.length === 0) {
+          listEl.innerHTML = '';
+          listEl.hidden = true;
+          if (emptyEl) { emptyEl.hidden = false; }
+          return;
+        }
+        if (emptyEl) emptyEl.hidden = true;
+        listEl.hidden = false;
+        var filtered = list;
+        if (currentFilter === 'member') filtered = list.filter(function(x) { return x.role === 'member'; });
+        else if (currentFilter === 'leader') filtered = list.filter(function(x) { return x.role === 'leader'; });
+        listEl.innerHTML = filtered.map(function(p) {
+          var initial = getInitial(p.fullName);
+          var roleLabel = (p.role === 'leader') ? 'Leader' : 'Member';
+          var district = (p.district || '').trim() ? p.district : '—';
+          return '<div class="sangathan-member-card" data-role="' + (p.role || '') + '">' +
+            '<div class="chart-card-avatar chart-card-avatar--initial"><span class="chart-card-initial">' + initial + '</span></div>' +
+            '<span class="sangathan-member-name">' + (p.fullName || '—') + '</span>' +
+            '<span class="sangathan-member-role">' + roleLabel + '</span>' +
+            '<span class="sangathan-member-district">' + district + '</span>' +
+            '</div>';
+        }).join('');
+      }
+
+      if (tabs.length) {
+        tabs.forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            var filter = this.getAttribute('data-filter') || 'all';
+            currentFilter = filter;
+            tabs.forEach(function(t) {
+              t.classList.toggle('active', t === tab);
+              t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+            });
+            renderList();
+          });
+        });
+      }
+      renderList();
+      if (window.location.hash === '#youth-members' && document.getElementById('youth-members')) {
+        document.getElementById('youth-members').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     })();
   </script>
 </body>

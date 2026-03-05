@@ -54,28 +54,14 @@
         <div class="donate-card" id="donateFormCard">
           <div class="donate-card-header">
             <h2 class="donate-card-title">Support UKD Kedarnath</h2>
-            <p class="donate-card-desc">Your contribution helps the youth movement. Select an amount below.</p>
+            <p class="donate-card-desc">Your contribution helps the youth movement. Scan the QR code to donate via UPI.</p>
           </div>
-          <div class="donate-amount-block">
-            <div class="donate-amount-heading">
-              <span class="donate-amount-icon" aria-hidden="true">₹</span>
-              <div>
-                <h3 class="donate-amount-title">Choose your amount</h3>
-                <p class="donate-amount-subtitle">Select a preset or enter a custom amount below.</p>
-              </div>
-            </div>
-            <div class="donate-options-wrap">
-              <div class="donate-options" id="donateOptions">
-                <div class="donate-option" data-amount="101"><span class="amount">₹101</span><span class="label">Support</span></div>
-                <div class="donate-option" data-amount="251"><span class="amount">₹251</span><span class="label">Contribute</span></div>
-                <div class="donate-option" data-amount="501"><span class="amount">₹501</span><span class="label">Partner</span></div>
-                <div class="donate-option" data-amount="1001"><span class="amount">₹1,001</span><span class="label">Champion</span></div>
-                <div class="donate-option" data-amount="custom"><span class="amount">Other</span><span class="label">Custom</span></div>
-              </div>
-              <div class="donate-custom-wrap" id="customAmountGroup" style="display: none;">
-                <span class="donate-custom-label">Or enter amount (₹)</span>
-                <input type="number" name="customAmount" id="customAmount" class="donate-custom-input" min="1" placeholder="e.g. 500" aria-label="Custom amount in rupees">
-              </div>
+          <div class="donate-scan-block">
+            <p class="donate-scan-title">Scan to donate</p>
+            <p class="donate-scan-subtitle">Use GPay, PhonePe, Paytm or any UPI app</p>
+            <div class="donate-qr-wrap">
+              <img src="images/donate-qr.png" alt="UPI QR code for donation" class="donate-qr-img" width="200" height="200" onerror="this.style.display='none'; var s=this.nextElementSibling; if(s) s.style.display='block';">
+              <p class="donate-qr-placeholder" style="display:none; margin:0; font-size:0.85rem; color:var(--color-text-muted);">Add your UPI QR as <code>images/donate-qr.png</code></p>
             </div>
           </div>
           <form id="donateForm" class="form--custom donate-form">
@@ -94,7 +80,7 @@
               <input type="tel" name="mobile" required placeholder="10-digit mobile" pattern="[0-9]{10}" maxlength="10">
             </div>
             <div class="form-submit">
-              <button type="submit" class="btn btn-gold btn-block">Proceed to Donate</button>
+              <button type="submit" class="btn btn-gold btn-block">I have donated — Submit details</button>
             </div>
           </form>
         </div>
@@ -136,48 +122,12 @@
   <script src="js/form-helpers.js"></script>
   <script>
     (function() {
-      var selectedAmount = 101;
-      var options = document.querySelectorAll('.donate-option');
-      var customGroup = document.getElementById('customAmountGroup');
-      var customInput = document.getElementById('customAmount');
       var form = document.getElementById('donateForm');
       var card = document.getElementById('donateFormCard');
-
-      options.forEach(function(el) {
-        el.addEventListener('click', function() {
-          options.forEach(function(o) { o.classList.remove('selected'); });
-          el.classList.add('selected');
-          if (el.dataset.amount === 'custom') {
-            customGroup.style.display = 'block';
-            customInput.focus();
-            selectedAmount = null;
-          } else {
-            customGroup.style.display = 'none';
-            customInput.value = '';
-            selectedAmount = parseInt(el.dataset.amount, 10);
-          }
-        });
-      });
-      options[0].classList.add('selected');
+      if (!form || !card) return;
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        var amount = selectedAmount;
-        if (amount === null && customInput) amount = parseInt(customInput.value, 10);
-        if (!amount || amount < 1) {
-          if (window.UKDForms) {
-            window.UKDForms.clearErrors(form);
-            var target = (selectedAmount === null && customInput) ? customInput : form.querySelector('[name="name"]');
-            if (target && selectedAmount === null) {
-              window.UKDForms.showFieldError(customInput, 'Please enter an amount (₹1 or more) or select a preset above.');
-            } else if (target) {
-              window.UKDForms.showFieldError(target, 'Please select an amount above or enter a custom amount.');
-            }
-          } else {
-            alert('Please select or enter a valid amount.');
-          }
-          return;
-        }
         if (window.UKDForms) UKDForms.clearErrors(form);
         var btn = form.querySelector('button[type="submit"]');
         if (window.UKDForms) UKDForms.setButtonLoading(btn, true);
@@ -188,15 +138,11 @@
               container: card,
               form: form,
               title: 'Thank You!',
-              message: 'Thank you for your donation of ₹' + amount + '. You will be contacted for payment. (Demo – connect to payment gateway when ready.)'
+              message: 'Thank you for your support. We have received your details.'
             });
           }
           form.reset();
-          if (customInput) customInput.value = '';
-          options.forEach(function(o) { o.classList.remove('selected'); });
-          options[0].classList.add('selected');
-          if (customGroup) customGroup.style.display = 'none';
-        }, 600);
+        }, 500);
       });
     })();
   </script>

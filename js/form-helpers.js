@@ -9,10 +9,13 @@ window.UKDForms = {
     var title = options.title || 'Success';
     var hideForm = options.hideForm !== false;
     var form = options.form;
+    var actionUrl = options.actionUrl || '';
+    var actionLabel = options.actionLabel || '';
 
     if (!container) return;
 
     var successEl = container.querySelector('.form-success');
+    var actionHtml = (actionUrl && actionLabel) ? '<p class="form-success-actions"><a href="' + this.escapeHtml(actionUrl) + '" class="btn btn-primary">' + this.escapeHtml(actionLabel) + '</a></p>' : '';
     if (!successEl) {
       successEl = document.createElement('div');
       successEl.className = 'form-success';
@@ -20,14 +23,20 @@ window.UKDForms = {
       successEl.innerHTML =
         '<div class="form-success-icon" aria-hidden="true">✓</div>' +
         '<h3>' + this.escapeHtml(title) + '</h3>' +
-        '<p>' + this.escapeHtml(message) + '</p>';
+        '<p>' + this.escapeHtml(message) + '</p>' +
+        actionHtml;
       var insertBefore = form && form.parentNode === container ? form : container.firstChild;
       container.insertBefore(successEl, insertBefore);
     } else {
       var h3 = successEl.querySelector('h3');
       var p = successEl.querySelector('p');
+      var actionsWrap = successEl.querySelector('.form-success-actions');
       if (h3) h3.textContent = title;
       if (p) p.textContent = message;
+      if (actionHtml) {
+        if (actionsWrap) actionsWrap.outerHTML = actionHtml;
+        else successEl.insertAdjacentHTML('beforeend', actionHtml);
+      } else if (actionsWrap) actionsWrap.remove();
     }
 
     successEl.classList.add('is-visible');

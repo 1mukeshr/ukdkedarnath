@@ -147,6 +147,43 @@
     return true;
   }
 
+  var STORAGE_KEY = 'ukd_join_submissions';
+
+  function getFormData() {
+    if (!form) return null;
+    var districtSel = form.querySelector('[name="district"]');
+    var districtName = '';
+    if (districtSel && districtSel.selectedIndex > 0 && UKD_DATA && UKD_DATA.districts) {
+      var id = districtSel.value;
+      var d = UKD_DATA.districts.find(function(x) { return x.id === id; });
+      if (d) districtName = d.nameEn || d.name;
+    }
+    return {
+      fullName: (form.querySelector('[name="fullName"]') || {}).value.trim(),
+      email: (form.querySelector('[name="email"]') || {}).value.trim(),
+      mobile: (form.querySelector('[name="mobile"]') || {}).value.trim(),
+      district: districtName || (districtSel ? districtSel.options[districtSel.selectedIndex].text : ''),
+      constituency: (form.querySelector('[name="constituency"]') || {}).value || '',
+      block: (form.querySelector('[name="block"]') || {}).value || '',
+      booth: (form.querySelector('[name="booth"]') || {}).value || '',
+      gender: (form.querySelector('[name="gender"]') || {}).value || '',
+      dob: (form.querySelector('[name="dob"]') || {}).value || '',
+      role: (form.querySelector('[name="role"]') || {}).value || '',
+      submittedAt: new Date().toISOString()
+    };
+  }
+
+  function saveSubmission(data) {
+    try {
+      var list = [];
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) try { list = JSON.parse(raw); } catch (err) {}
+      if (!Array.isArray(list)) list = [];
+      list.push(data);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    } catch (err) {}
+  }
+
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -157,22 +194,37 @@
         UKDForms.setButtonLoading(submitBtn, true);
       }
 
+      var formData = getFormData();
+      var roleValue = (formData && formData.role) ? formData.role : '';
+      var roleLabel = roleValue === 'leader' ? 'Leader' : 'Member';
+
       setTimeout(function() {
+        if (formData) {
+          saveSubmission(formData);
+        }
         if (window.UKDForms) {
           UKDForms.setButtonLoading(submitBtn, false);
           UKDForms.showSuccess({
             container: formCard,
             form: form,
-            title: 'Application Submitted',
-            message: 'Thank you! Your application has been received. Our team will connect with you soon.'
+            title: 'You joined as ' + roleLabel,
+            message: 'Thank you, ' + (formData ? formData.fullName : '') + '! Your application has been received. Our team will connect with you soon. View the sangathan to see members and leaders.',
+            actionUrl: 'sangathan.html#youth-members',
+            actionLabel: 'View in Sangathan'
           });
         } else {
           alert('Thank you! Your application has been submitted. Our team will connect with you soon.');
         }
         form.reset();
         if (districtSelect) {
-          if (constituencySelect) constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
-          if (blockSelect) blockSelect.innerHTML = '<option value="">Select Block</option>';
+          if (constituencySelect) {
+            constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+            constituencySelect.disabled = true;
+          }
+          if (blockSelect) {
+            blockSelect.innerHTML = '<option value="">Select Block</option>';
+            blockSelect.disabled = true;
+          }
           fillBooths();
         }
       }, 600);
